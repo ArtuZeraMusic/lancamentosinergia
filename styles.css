@@ -1,0 +1,316 @@
+/* SinergIA Launch Page - CSS */
+
+/* Cores Ibama */
+:root {
+    --ibama-dark-blue: #02193F;
+    --ibama-tile: #9A1B1E;
+    --ibama-light-blue: #1286C8;
+    --ibama-green: #00A650;
+    --text-gray: #666666;
+    --light-gray: #F5F5F5;
+    --border-gray: #E0E0E0;
+}
+
+/* Reset e Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--ibama-dark-blue);
+    line-height: 1.6;
+}
+
+/* Container */
+.container {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+    .container {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .container {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+}
+
+/* Banner Section */
+.banner-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 0;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    align-items: center;
+}
+
+@media (min-width: 768px) {
+    .grid-container {
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+    }
+}
+
+/* Left Column */
+.left-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+}
+
+@media (min-width: 768px) {
+    .left-column {
+        align-items: flex-start;
+    }
+}
+
+.logo-container {
+    width: 100%;
+}
+
+.logo {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    display: block;
+}
+
+@media (min-width: 768px) {
+    .logo {
+        max-width: 100%;
+    }
+}
+
+.tagline-section {
+    text-align: center;
+    gap: 1rem;
+}
+
+@media (min-width: 768px) {
+    .tagline-section {
+        text-align: left;
+    }
+}
+
+.tagline-subtitle {
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: var(--text-gray);
+    margin-bottom: 0.5rem;
+}
+
+.tagline-description {
+    font-size: 0.875rem;
+    color: var(--text-gray);
+    font-weight: 300;
+    line-height: 1.6;
+}
+
+/* Right Column */
+.right-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+}
+
+/* Title Section */
+.title-section {
+    gap: 1rem;
+}
+
+.main-title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: var(--ibama-dark-blue);
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+}
+
+@media (min-width: 768px) {
+    .main-title {
+        font-size: 3rem;
+    }
+}
+
+.subtitle {
+    font-size: 1.875rem;
+    font-weight: 600;
+    color: var(--ibama-light-blue);
+    margin-bottom: 1rem;
+}
+
+@media (min-width: 768px) {
+    .subtitle {
+        font-size: 2.25rem;
+    }
+}
+
+.description {
+    font-size: 1.125rem;
+    color: #4B5563;
+    font-weight: 300;
+    line-height: 1.6;
+}
+
+/* Event Details */
+.event-details {
+    background-color: var(--light-gray);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--border-gray);
+    gap: 1rem;
+}
+
+.detail-item {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.detail-item:last-child {
+    margin-bottom: 0;
+}
+
+.detail-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    color: var(--ibama-light-blue);
+    flex-shrink: 0;
+    margin-top: 0.25rem;
+}
+
+.detail-content {
+    flex: 1;
+}
+
+.detail-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-gray);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.25rem;
+}
+
+.detail-value {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--ibama-dark-blue);
+}
+
+/* CTA Section */
+.cta-section {
+    padding-top: 1rem;
+}
+
+.cta-button {
+    width: 100%;
+    padding: 1.5rem;
+    font-size: 1.125rem;
+    font-weight: 700;
+    background-color: var(--ibama-tile);
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-family: 'Montserrat', sans-serif;
+}
+
+@media (min-width: 768px) {
+    .cta-button {
+        width: auto;
+        padding: 1.5rem 2rem;
+    }
+}
+
+.cta-button:hover {
+    background-color: #7A1518;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+}
+
+.cta-button:active {
+    transform: translateY(0);
+}
+
+.cta-subtitle {
+    font-size: 0.75rem;
+    color: var(--text-gray);
+    margin-top: 0.75rem;
+    font-weight: 300;
+}
+
+/* Footer */
+.footer {
+    background-color: var(--ibama-dark-blue);
+    color: white;
+    padding: 1.5rem;
+}
+
+.footer-text {
+    font-size: 0.875rem;
+    font-weight: 300;
+    text-align: center;
+}
+
+/* Utilities */
+.min-h-screen {
+    min-height: 100vh;
+}
+
+.bg-white {
+    background-color: white;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+    .banner-section {
+        padding: 2rem 0;
+    }
+
+    .grid-container {
+        gap: 2rem;
+    }
+
+    .main-title {
+        font-size: 1.875rem;
+    }
+
+    .subtitle {
+        font-size: 1.5rem;
+    }
+
+    .description {
+        font-size: 1rem;
+    }
+}
