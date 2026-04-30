@@ -1,0 +1,26 @@
+name: Mirror GitHub Main to GitLab IBAMA
+
+on:
+  push:
+    branches:
+      - main  # Monitora a sua branch principal de trabalho no GitHub
+
+jobs:
+  mirror_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Necessário para carregar o histórico e permitir o push --force
+
+      - name: Push to GitLab IBAMA
+        run: |
+          # 1. Configura o remote do IBAMA usando as credenciais das Secrets
+          # O padrão oauth2 é o mais estável para instâncias internas do GitLab
+          git remote add gitlab https://oauth2:${{ secrets.GITLAB_TOKEN }}@${{ secrets.GITLAB_REPO_URL }}
+          
+          # 2. Executa a sincronização direcionada:
+          # Pega a 'main' local do GitHub e injeta na 'sync-bridge-gh' do GitLab.
+          # O --force garante que o espelhamento seja concluído mesmo com históricos diferentes.
+          git push --force gitlab main:sync-bridge-gh
