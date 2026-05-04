@@ -15,7 +15,7 @@
         }
 
         :root {
-            --bg-primary: #ffffff;
+            --bg-primary: #E8F0F8;
             --bg-secondary: #F5F5F5;
             --text-primary: #02193F;
             --text-secondary: #4B5563;
@@ -239,10 +239,26 @@
 
         .cta-section {
             padding-top: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .cta-buttons {
+                flex-direction: row;
+                gap: 1rem;
+            }
         }
 
         .cta-button {
-            width: 100%;
+            flex: 1;
             padding: 1.5rem;
             font-size: 1.125rem;
             font-weight: 700;
@@ -256,13 +272,6 @@
             font-family: 'Montserrat', sans-serif;
         }
 
-        @media (min-width: 768px) {
-            .cta-button {
-                width: auto;
-                padding: 1.5rem 2rem;
-            }
-        }
-
         .cta-button:hover {
             background-color: var(--accent-red-hover);
             box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
@@ -273,11 +282,98 @@
             transform: translateY(0);
         }
 
+        .cta-button.secondary {
+            background-color: var(--accent-blue);
+        }
+
+        .cta-button.secondary:hover {
+            background-color: #0A5FA8;
+        }
+
         .cta-subtitle {
             font-size: 0.75rem;
             color: var(--text-muted);
             margin-top: 0.75rem;
             font-weight: 300;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .modal-content {
+            background-color: var(--bg-primary);
+            padding: 2rem;
+            border-radius: 1rem;
+            max-width: 90%;
+            max-height: 90vh;
+            overflow: auto;
+            position: relative;
+            animation: slideIn 0.3s ease;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--text-primary);
+            width: 3rem;
+            height: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            transform: rotate(90deg);
+        }
+
+        .modal-image {
+            width: 100%;
+            height: auto;
+            border-radius: 0.5rem;
+            margin-top: 1rem;
         }
 
         .footer {
@@ -304,6 +400,14 @@
     <div class="theme-toggle">
         <button id="light-btn" class="active" title="Modo Claro" onclick="setTheme('light')">☀️</button>
         <button id="dark-btn" title="Modo Escuro" onclick="setTheme('dark')">🌙</button>
+    </div>
+
+    <!-- Cronograma Modal -->
+    <div id="cronogramaModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeCronograma()">&times;</button>
+            <img src="cronograma.webp" alt="Cronograma SinergIA" class="modal-image">
+        </div>
     </div>
 
     <div class="banner-section">
@@ -352,16 +456,21 @@
                             </svg>
                             <div class="detail-content">
                                 <div class="detail-label">Local</div>
-                                <div class="detail-value">Auditório 1 do Ibama Sede<br>SCEN Trecho 2, Edifício Sede, Brasília/DF + Online</div>
+                                <div class="detail-value">Auditório Paulo Nogueira Neto do Ibama Sede<br>SCEN Trecho 2, Edifício Sede, Brasília/DF + Online</div>
                             </div>
                         </div>
                     </div>
 
                     <!-- CTA -->
                     <div class="cta-section">
-                        <button class="cta-button" onclick="window.open('https://forms.office.com/Pages/ResponsePage.aspx?id=5_XjahlUp0KAdYwUkMcrJdrV15mjlAFHvXyqCIQmhGhUM0k5VFpVUFZMUzRXTlVPUVFaTFI0QzVXSi4u', '_blank')">
-                            Inscrever-se
-                        </button>
+                        <div class="cta-buttons">
+                            <button class="cta-button" onclick="window.open('https://forms.office.com/Pages/ResponsePage.aspx?id=5_XjahlUp0KAdYwUkMcrJdrV15mjlAFHvXyqCIQmhGhUM0k5VFpVUFZMUzRXTlVPUVFaTFI0QzVXSi4u', '_blank')">
+                                Inscrever-se
+                            </button>
+                            <button class="cta-button secondary" onclick="openCronograma()">
+                                Cronograma
+                            </button>
+                        </div>
                         <p class="cta-subtitle">Preencha o formulário de inscrição para garantir sua vaga</p>
                     </div>
                 </div>
@@ -397,6 +506,26 @@
             }
 
             localStorage.setItem('theme', theme);
+        }
+
+        // Abrir cronograma
+        function openCronograma() {
+            const modal = document.getElementById('cronogramaModal');
+            modal.classList.add('show');
+        }
+
+        // Fechar cronograma
+        function closeCronograma() {
+            const modal = document.getElementById('cronogramaModal');
+            modal.classList.remove('show');
+        }
+
+        // Fechar modal ao clicar fora
+        window.onclick = function(event) {
+            const modal = document.getElementById('cronogramaModal');
+            if (event.target == modal) {
+                closeCronograma();
+            }
         }
 
         // Inicializar tema ao carregar a página
