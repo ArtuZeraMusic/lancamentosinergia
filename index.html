@@ -436,11 +436,11 @@
         <button id="dark-btn" title="Modo Escuro" onclick="setTheme('dark')">🌙</button>
     </div>
 
-    <!-- Cronograma Modal -->
+    <!-- Agenda Modal -->
     <div id="cronogramaModal" class="modal">
         <div class="modal-content">
             <button class="modal-close" onclick="closeCronograma()">&times;</button>
-            <img src="cronograma.webp" alt="Cronograma SinergIA" class="modal-image">
+            <img src="cronograma.webp" alt="Agenda SinergIA" class="modal-image">
         </div>
     </div>
 
@@ -459,7 +459,7 @@
                     <div class="title-section">
                         <h1 class="main-title">Lançamento Oficial</h1>
                         <h2 class="subtitle">SinergIA</h2>
-                        <p class="description">Descubra como o SinergIA está norteando e transformando o desenvolvimento de software no setor público, combinando a inteligência humana com o poder da IA.</p>
+                        <p class="description">Descubra como o SinergIA pode te ajudar a transformar o desenvolvimento de software no setor público, combinando a inteligência humana com o poder da IA.</p>
                     </div>
 
                     <!-- Detalhes do Evento -->
@@ -508,7 +508,7 @@
                                 Inscrever-se
                             </button>
                             <button class="cta-button secondary" onclick="openCronograma()">
-                                Cronograma
+                                Agenda
                             </button>
                         </div>
                         <p class="cta-subtitle">Preencha o formulário de inscrição para garantir sua vaga</p>
@@ -548,13 +548,13 @@
             localStorage.setItem('theme', theme);
         }
 
-        // Abrir cronograma
+        // Abrir agenda
         function openCronograma() {
             const modal = document.getElementById('cronogramaModal');
             modal.classList.add('show');
         }
 
-        // Fechar cronograma
+        // Fechar agenda
         function closeCronograma() {
             const modal = document.getElementById('cronogramaModal');
             modal.classList.remove('show');
